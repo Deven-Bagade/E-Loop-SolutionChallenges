@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import backgroundImage from '../assets/image.png'; // Adjust the path to your image
+
 
 const ProducerAuth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ email: '', password: '' });
   const navigate = useNavigate();
+    const [imageLoaded, setImageLoaded] = useState(false);
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,7 +17,18 @@ const ProducerAuth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div 
+          className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8"
+          style={{
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+          }}
+        >
+          {/* Dark overlay to improve text readability */}
+          <div className="absolute inset-0 bg-opacity-50"></div>
+    <div className="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
           {isLogin ? 'Producer Login' : 'Producer Sign Up'}
@@ -73,6 +88,7 @@ const ProducerAuth = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
